@@ -19,10 +19,6 @@
               <li><a href="#">Фотогаларея</a></li>
             </ul>
           </nav>
-          <div class="visually_impaired">
-            <a href="#">Версия для слабовидящих</a>
-            <img />
-          </div>
         </div>
       </div>
       <div class="bottom-menu">
@@ -87,7 +83,14 @@
         </div>
       </div>
       <div class="swiper-container mob">
-        <div class="swiper-wrapper slider"></div>
+        <div
+          class="swiper-wrapper slider"
+          style="
+            transition-duration: 0ms;
+            transition-delay: 0ms;
+            transform: translate3d(0px, 0px, 0px);
+          "
+        ></div>
       </div>
 
       <!-- <script>
@@ -495,28 +498,27 @@
         questions.forEach((question) => {
           question.addEventListener("click", () => {
             const parent = question.parentElement;
+            const answer = parent.querySelector(".faq__item__answer");
+
             if (parent.classList.contains("open")) {
-              parent.classList.add("closed");
-              setTimeout(() => {
-                parent.classList.remove("open", "closed");
-              }, 400);
-              const answer = parent.querySelector(".faq__item__answer");
-              if (answer) {
-                answer.style.padding = "3px 40px 0px 40px";
-                setTimeout(() => {
-                  answer.style.padding = "15px 40px 15px 40px";
-                }, 400);
-              }
+              // Закрытие элемента
+              question.style.height = "60px"; // Уменьшаем высоту вопроса до 60px
+              parent.classList.remove("open");
             } else {
+              // Открытие элемента
+              question.style.height = "auto"; // Восстанавливаем высоту вопроса
+              const fullHeight = question.scrollHeight; // Получаем полную высоту вопроса
+              question.style.height = "60px"; // Устанавливаем высоту на 60px для начала анимации
+              setTimeout(() => {
+                question.style.height = `100%`; // Анимируем до полной высоты
+              }, 10); // Небольшая задержка для анимации
               parent.classList.add("open");
-              parent.classList.remove("closed");
             }
           });
         });
       }
     </script>
 
-    <script src="./main.js" ;></script>
     <script src="active-script.js"></script>
     <script defer src="./swiper-bundle.min.js"></script>
     <script defer src="./swip.js"></script>
@@ -574,6 +576,9 @@
 
       loadSwiperBundle();
     </script>
-    <script src="./slid.js"></script>
+    <script defer src="./main.js"></script>
+    <script defer src="./slid.js"></script>
+    <script defer src="./swiper-bundle.min.js"></script>
+    <script defer src="./swip.js"></script>
   </body>
 </html>

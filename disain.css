@@ -243,6 +243,10 @@
 html {
   overflow-x: hidden;
 }
+.faq__item__question {
+  transition: height 0.4s ease;
+}
+
 .swiper-container {
   background: rgb(228, 169, 114);
 }
@@ -503,12 +507,17 @@ li {
   margin-top: clamp(25px, 2vw, 50px);
   margin-right: 20px;
 }
-.uniqueness,
+
 .top-uniqueness,
 .duwn-uniqueness {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+.uniqueness {
+  justify-content: space-around;
+  display: flex;
+  width: 100%;
 }
 .uniqueness__group {
   display: flex;
@@ -516,8 +525,8 @@ li {
   align-items: center;
 }
 .uniqueness__img {
-  width: clamp(70px, 6vw, 100px);
-  height: clamp(80px, 6vw, 110px);
+  width: clamp(50px, 6vw, 100px);
+  height: clamp(70px, 6vw, 110px);
 }
 .uniqueness__text {
   padding: 5px 40px 5px 40px;
@@ -838,7 +847,7 @@ li {
 }
 button:hover {
   background-color: rgb(220, 149, 84);
-  transition: 0.5s;
+  transition: 0.25s;
 }
 
 .faq__item.open .faq__item__question {
@@ -1836,7 +1845,7 @@ li {
     width: 137vw !important;
   }
   .burger-menu {
-    width: auto;
+    width: 100%;
   }
   .burger-menu .menu-links ul li a,
   .burger-menu__close {

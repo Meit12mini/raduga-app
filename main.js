@@ -53,7 +53,7 @@ async function getResponseAndPopulate() {
         item.banner_mobile
           .map(
             (banner_mobileItem) =>
-              `<div class="swiper-slide swiper-slide swiper-slide-active swiper-slide-next" style="margin-right: 0px !important">
+              `<div class="swiper-slide" style="width: 100%; margin-right: 30px;" role="group" aria-label="NaN / 2">
             <div class="slider__item-sw">
               <div class="slide-text">${banner_mobileItem.title}</div>
               <img class="slider__item__img" src="banner_mob 2.png" />
