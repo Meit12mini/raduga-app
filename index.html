@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Радуга</title>
+    <link rel="stylesheet" href="swiper-bundle.min.css" />
+    <link rel="stylesheet" href="disain.css" />
+  </head>
+  <body>
+    <header>
+      <div class="top-menu">
+        <div class="container">
+          <nav>
+            <ul class="top-menu__menu">
+              <li><a href="#">Сведения об обрзовательной организации</a></li>
+              <li><a href="#">Документы</a></li>
+              <li><a href="#">Фотогаларея</a></li>
+            </ul>
+          </nav>
+          <div class="visually_impaired">
+            <a href="#">Версия для слабовидящих</a>
+            <img />
+          </div>
+        </div>
+      </div>
+      <div class="bottom-menu">
+        <div style="width: 100%" class="container flex">
+          <nav
+            class="max-width"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <ul class="bottom-menu__logo">
+              <li class="logo">
+                <img src="logo.svg" /><a id="addres">Ул Матвеева 12</a>
+              </li>
+            </ul>
+            <ul class="bottom-menu__menu">
+              <!-- <li><a href="#">Обратная связь</a></li> -->
+              <li><a href="#">О нас</a></li>
+              <li><a href="#">Родителям</a></li>
+              <li><a href="#">Новости</a></li>
+              <li><a href="#">Лагерь</a></li>
+            </ul>
+            <ul class="bottom-menu__number ps">
+              <li>
+                <a class="phone" href="tel:+79145238841">+7 (914) 523-88-41</a>
+              </li>
+              <li>
+                <a class="phone" href="tel:+79243700070">+7 (924) 370-00-70</a>
+              </li>
+            </ul>
+            <div class="bottom-menu__number mob"><img src="phone.png" /></div>
+          </nav>
+          <div class="bottom-menu__burger"><span></span></div>
+        </div>
+      </div>
+      <div class="burger-menu">
+        <div class="menu-links">
+          <ul class="menu-links__list">
+            <div class="burger-menu__close">Закрыть</div>
+            <li>
+              <ul>
+                <li><a href="#">Сведения об обрзовательной организации</a></li>
+                <li><a href="#">Документы</a></li>
+                <li><a href="#">Фотогаларея</a></li>
+              </ul>
+            </li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Родителям</a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="#">Лагерь</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="article ps" style="margin-top: 100px">
+        <div class="slider">
+          <div class="slider__content-sw"></div>
+        </div>
+      </div>
+      <div class="swiper-container mob">
+        <div class="swiper-wrapper slider"></div>
+      </div>
+
+      <!-- <script>
+  var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script> -->
+
+      <style>
+        .slider {
+          height: clamp(300px, 32vw, 450px);
+          border-radius: 30px;
+          margin: 0px 13% 0px 13%;
+          background: rgb(228, 169, 114);
+        }
+        .slider__content,
+        .slider__content-sw {
+          display: block;
+          transition: margin-left 0.5s;
+          overflow: hidden;
+        }
+
+        .slider__item,
+        .slider__item-sw {
+          flex: 0 0 100%;
+          text-align: left;
+          display: flex;
+          justify-content: space-between;
+          transition: transform 0.5s ease-in-out, filter 2s ease-in-out;
+        }
+        .slider__item.current {
+          transform: translateX(0);
+        }
+        .slider__item.blur {
+          filter: blur(15px);
+        }
+        .slider__item.next {
+          transform: translateX(-100%);
+        }
+        .slider__item__text {
+          margin: clamp(25px, 3vw, 50px) clamp(25px, 3vw, 50px) 0px
+            clamp(25px, 3vw, 50px);
+          color: rgb(255, 255, 255);
+          font-family: "Futura PT Book";
+          font-size: clamp(29px, 3vw, 45px);
+          font-weight: 400;
+          line-height: 130%;
+          letter-spacing: 0%;
+          width: 34vw;
+        }
+        .slider__item__img {
+          max-height: clamp(300px, 32vw, 450px);
+          filter: blur(0);
+          transition: filter 0.2s;
+        }
+        .slider__item.active .slider__item__img {
+          filter: blur(10px);
+        }
+        .slider__item__buttom {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          margin-bottom: 25px;
+          margin-left: clamp(25px, 3vw, 50px);
+          display: flex;
+          width: 200px;
+          font-size: clamp(33px, 2vw, 40px);
+        }
+        .slider__item__buttom__prev,
+        .slider__item__buttom__next {
+          cursor: pointer;
+          color: #fff;
+        }
+
+        .slider__item__content {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      </style>
+
+      <div class="article">
+        <div class="section marg fd"></div>
+      </div>
+      <div class="article">
+        <div class="section marg">
+          <div class="uniqueness">
+            <div class="uniqueness__group">
+              <img class="uniqueness__img" src="SVG/icons8-диплом-1-96.svg" />
+              <div class="uniqueness__text">ЗАБОТА</div>
+            </div>
+            <div class="uniqueness__group">
+              <img class="uniqueness__img" src="SVG/Vector.svg" />
+              <div class="uniqueness__text">ОПЫТ</div>
+            </div>
+            <div class="uniqueness__group">
+              <img class="uniqueness__img" src="SVG/achievements_svgrepo.svg" />
+              <div class="uniqueness__text">ДОСТИЖЕНИЯ</div>
+            </div>
+            <div class="uniqueness__group">
+              <img class="uniqueness__img" src="SVG/creativity_svgrepo.svg" />
+              <div class="uniqueness__text">ТВОРЧЕСТВО</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="article">
+        <div style="flex-direction: column" class="section">
+          <nav class="news">
+            <ul class="news__scroll"></ul>
+          </nav>
+          <div class="news__all">
+            <a href="" class="news__all__link">Все новости</a>
+          </div>
+        </div>
+      </div>
+      <div style="height: 510px" class="article">
+        <div class="section marg">
+          <div class="director">
+            <div class="director__title" style="text-align: left">
+              Директор ЧОУ "Гимназия "Радуга"
+            </div>
+            <div class="director__info">
+              <div class="director__info__img-container">
+                <div class="director__info__cube"></div>
+                <img class="director__info__img" src="director.png" />
+                <div class="director__info__img-container__second"></div>
+              </div>
+              <div class="director__info__text-container">
+                <div class="director__info__text-container__title">
+                  Бугрова Елена Владимировна
+                </div>
+                <div class="director__info__text-container__main-text"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="article">
+        <div class="section cont">
+          <div class="contact">
+            <div>
+              <div class="contact__title">Связаться с нами</div>
+            </div>
+            <div class="contact__сontainer">
+              <div class="contact__application">
+                <div class="contact__application__application-container">
+                  <div
+                    class="contact__application__application-container__user-container"
+                  >
+                    <div
+                      class="contact__application__application-container__user-container__title"
+                    >
+                      Имя
+                    </div>
+                    <input
+                      class="contact__application__application-container__user-container__input"
+                    />
+                  </div>
+                  <div
+                    class="contact__application__application-container__phone-container"
+                  >
+                    <div
+                      class="contact__application__application-container__phone-container__title"
+                    >
+                      Телефон
+                    </div>
+                    <input
+                      class="contact__application__application-container__phone-container__input"
+                    />
+                  </div>
+                  <div
+                    class="contact__application__application-container__mail-container"
+                  >
+                    <div
+                      class="contact__application__application-container__mail-container__title"
+                    >
+                      Почта
+                    </div>
+                    <input
+                      class="contact__application__application-container__mail-container__input"
+                    />
+                    <div class="contact__application__application-container">
+                      <div
+                        class="contact__application__application-container__cube"
+                      >
+                        <div
+                          class="contact__application__application-container__cube__img"
+                        ></div>
+                        <div
+                          class="contact__application__application-container__text"
+                        >
+                          Соглашение на обработку персональных данных
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="contact__application__text">
+                  <div class="contact__application__text__title">Сообщение</div>
+                  <textarea
+                    class="contact__application__text__input"
+                    type="text"
+                    id="content"
+                    name="content"
+                    cols="60"
+                    rows="5"
+                  ></textarea>
+
+                  <div class="contact__application__text__cube">
+                    <div class="contact__application__text__cube__img"></div>
+                    <div class="contact__application__text__text">
+                      Соглашение на обработку персональных данных
+                    </div>
+                  </div>
+                  <div class="contact__application__text__button">
+                    <div class="contact__application__text__button__text">
+                      Отправить
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contact__agreement"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="article">
+        <div class="section">
+          <section class="faq">
+            <ul class="faq__list">
+              <li class="faq__item">
+                <button class="faq__item__question">
+                  Что такое Lorem Ipsum?
+                  <div class="faq__item__answer">
+                    Lorem Ipsum - это текст-"рыба", используемый в печати и
+                    вэб-дизайне. Lorem Ipsum является стандартным примером
+                    текста, используемого в индустрии тиколигаф. Этот текст
+                    используется в качестве заполнителя на страницах, чтобы
+                    избежать пустых страниц и дать образец прочтения и макета.
+                    Данный текст успешно пережил без заметных изменений пять
+                    веков, но и перешагнул в интернет, где popularized world
+                    wide web. Нередален текст размером примерно треи три
+                    страницы и постоянно используется в качестве примера текста
+                    в наборе по созданию печати и вэб-дизайна. Если веб-дизайнер
+                    обнаружит в тексте Lorem Ipsum, то будьте уверены, что он
+                    достаточно умный для перестановки слов, чтобы сделать
+                    читаемый текст.
+                  </div>
+                </button>
+              </li>
+              <li class="faq__item">
+                <button class="faq__item__question">
+                  Что такое Lorem Ipsum?
+                  <div class="faq__item__answer">
+                    Lorem Ipsum - это текст-"рыба", используемый в печати и
+                    вэб-дизайне. Lorem Ipsum является стандартным примером
+                    текста, используемого в индустрии тиколигаф. Этот текст
+                    используется в качестве заполнителя на страницах, чтобы
+                    избежать пустых страниц и дать образец прочтения и макета.
+                    Данный текст успешно пережил без заметных изменений пять
+                    веков, но и перешагнул в интернет, где popularized world
+                    wide web. Нередален текст размером примерно треи три
+                    страницы и постоянно используется в качестве примера текста
+                    в наборе по созданию печати и вэб-дизайна. Если веб-дизайнер
+                    обнаружит в тексте Lorem Ipsum, то будьте уверены, что он
+                    достаточно умный для перестановки слов, чтобы сделать
+                    читаемый текст.
+                  </div>
+                </button>
+              </li>
+              <li class="faq__item">
+                <button class="faq__item__question">
+                  Что такое Lorem Ipsum?
+                  <div class="faq__item__answer">
+                    Lorem Ipsum - это текст-"рыба", используемый в печати и
+                    вэб-дизайне. Lorem Ipsum является стандартным примером
+                    текста, используемого в индустрии тиколигаф. Этот текст
+                    используется в качестве заполнителя на страницах, чтобы
+                    избежать пустых страниц и дать образец прочтения и макета.
+                    Данный текст успешно пережил без заметных изменений пять
+                    веков, но и перешагнул в интернет, где popularized world
+                    wide web. Нередален текст размером примерно треи три
+                    страницы и постоянно используется в качестве примера текста
+                    в наборе по созданию печати и вэб-дизайна. Если веб-дизайнер
+                    обнаружит в тексте Lorem Ipsum, то будьте уверены, что он
+                    достаточно умный для перестановки слов, чтобы сделать
+                    читаемый текст.
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer">
+        <div class="footer__content">
+          <div class="footer__content__links">
+            <div class="footer__content__links__connection">
+              <div class="footer__content__links__connection__reach">
+                <div class="footer__content__links__connection__reach__title">
+                  Связаться
+                </div>
+                <ul class="footer__content__links__connection__reach__list">
+                  <a href="tel:+79145238841">+7 (914) 523-88-41</a>
+                  <a href="tel:+79243700070">+7 (924) 370-00-70</a>
+                </ul>
+              </div>
+              <div class="footer__content__links__connection__address">
+                <div class="footer__content__links__connection__address__title">
+                  Адрес
+                </div>
+                <ul class="footer__content__links__connection__address__list">
+                  <li>ул. Матвеева 12</li>
+                  <li>ул. Серова 29</li>
+                  <li>ул. Смоленская 22;</li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer__content__links__company">
+              <div class="footer__content__links__company__title">Компания</div>
+              <ul class="footer__content__links__company__list">
+                <li>Сведения об образовательной организации</li>
+                <li>Документы</li>
+                <li>Прайс-лист</li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer__content__for-parents">
+            <div class="footer__content__for-parents__conteiner">
+              <div class="footer__content__for-parents__conteiner__urgently">
+                Уважаемые родители! Убедительная просьба оплачивать услуги ЧОУ
+                "Гимназия "Радуга" согласно договора до 10 числа месяца.<br />
+                <br />
+                Бухгалтерия находится по адресу: <br />ул.Смоленская, дом 22,
+                строение 8.<br />
+                Бухгалтер-кассир: Анастасия Сергеевна 8-914-804-77-12
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      let faqOpened = true;
+      if (window.innerWidth < 767) {
+        const questions = document.querySelectorAll(".faq__item__question");
+        questions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const parent = question.parentElement;
+            if (parent.classList.contains("open")) {
+              parent.classList.add("closed");
+              setTimeout(() => {
+                parent.classList.remove("open", "closed");
+              }, 400);
+              const answer = parent.querySelector(".faq__item__answer");
+              if (answer) {
+                answer.style.padding = "5px 5px 0px 5px";
+                setTimeout(() => {
+                  answer.style.padding = "10px 5px 7px 5px";
+                }, 400);
+              }
+            } else {
+              parent.classList.add("open");
+              parent.classList.remove("closed");
+            }
+            faqOpened = !faqOpened;
+          });
+        });
+      }
+      if (window.innerWidth > 766 && window.innerWidth < 1445) {
+        const questions = document.querySelectorAll(".faq__item__question");
+        questions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const parent = question.parentElement;
+            if (parent.classList.contains("open")) {
+              parent.classList.add("closed");
+              setTimeout(() => {
+                parent.classList.remove("open", "closed");
+              }, 400);
+              const answer = parent.querySelector(".faq__item__answer");
+              if (answer) {
+                answer.style.padding = "1px 5px 0px 5px";
+                setTimeout(() => {
+                  answer.style.padding = "7px 5px 7px 5px";
+                }, 400);
+              }
+            } else {
+              parent.classList.add("open");
+              parent.classList.remove("closed");
+            }
+          });
+        });
+      }
+      if (window.innerWidth > 1444) {
+        const questions = document.querySelectorAll(".faq__item__question");
+        questions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const parent = question.parentElement;
+            if (parent.classList.contains("open")) {
+              parent.classList.add("closed");
+              setTimeout(() => {
+                parent.classList.remove("open", "closed");
+              }, 400);
+              const answer = parent.querySelector(".faq__item__answer");
+              if (answer) {
+                answer.style.padding = "3px 40px 0px 40px";
+                setTimeout(() => {
+                  answer.style.padding = "15px 40px 15px 40px";
+                }, 400);
+              }
+            } else {
+              parent.classList.add("open");
+              parent.classList.remove("closed");
+            }
+          });
+        });
+      }
+    </script>
+
+    <script src="./main.js" ;></script>
+    <script src="active-script.js"></script>
+    <script defer src="./swiper-bundle.min.js"></script>
+    <script defer src="./swip.js"></script>
+    <script>
+      function loadScript(src, callback) {
+        var script = document.createElement("script");
+        script.src = src;
+        script.onload = function () {
+          callback(null, true);
+        };
+        script.onerror = function () {
+          callback(new Error("Не удалось загрузить скрипт: " + src), false);
+        };
+        document.head.appendChild(script);
+      }
+
+      function initializeSlider() {
+        window.addEventListener("load", function () {
+          var swiperElement = document.querySelector(".swiper-container");
+          var swiper = new Swiper(swiperElement, {
+            // Optional parameters
+            direction: "horizontal",
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+
+            // If we need pagination
+            pagination: {
+              el: ".swiper-pagination",
+            },
+
+            // Navigation arrows
+
+            //   breakpoints: {
+            //     900: {
+            //       slidesPerView: 1,
+            //     },
+            //   },
+          });
+        });
+      }
+
+      function loadSwiperBundle() {
+        loadScript("swiper-bundle.min.js", function (error, success) {
+          if (error) {
+            console.error(error);
+            // Повторная попытка загрузки скрипта после задержки
+            setTimeout(loadSwiperBundle, 2000);
+          } else {
+            console.log("Бандл Swiper успешно загружен.");
+            initializeSlider(); // Инициализация слайдера после успешной загрузки
+          }
+        });
+      }
+
+      loadSwiperBundle();
+    </script>
+    <script src="./slid.js"></script>
+  </body>
+</html>

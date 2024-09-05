@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" />
+    <title>Document</title>
+    <link rel="stylesheet" href="disain.css" />
+  </head>
+  <body>
+    <header>
+      <div class="top-menu">
+        <div class="container">
+          <nav>
+            <ul class="top-menu__menu">
+              <li><a href="#">Сведения об обрзовательной организации</a></li>
+              <li><a href="#">Документы</a></li>
+              <li><a href="#">Фотогаларея</a></li>
+            </ul>
+          </nav>
+          <div class="visually_impaired">
+            <a href="#">Версия для слабовидящих</a>
+            <img />
+          </div>
+        </div>
+      </div>
+      <div class="bottom-menu">
+        <div style="width: 100%" class="container flex">
+          <nav
+            class="max-width"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <ul class="bottom-menu__logo">
+              <li class="logo">
+                <img src="logo.svg" /><a id="addres">Ул Матвеева 12</a>
+              </li>
+            </ul>
+            <ul class="bottom-menu__menu">
+              <!-- <li><a href="#">Обратная связь</a></li> -->
+              <li><a href="#">О нас</a></li>
+              <li><a href="#">Родителям</a></li>
+              <li><a href="#">Новости</a></li>
+              <li><a href="#">Лагерь</a></li>
+            </ul>
+            <ul class="bottom-menu__number ps">
+              <li>
+                <a class="phone" href="tel:+79145238841">+7 (914) 523-88-41</a>
+              </li>
+              <li>
+                <a class="phone" href="tel:+79243700070">+7 (924) 370-00-70</a>
+              </li>
+            </ul>
+            <div class="bottom-menu__number mob"><img src="phone.png" /></div>
+          </nav>
+          <div class="bottom-menu__burger"><span></span></div>
+        </div>
+      </div>
+      <div class="burger-menu">
+        <div class="menu-links">
+          <ul class="menu-links__list">
+            <div class="burger-menu__close">Закрыть</div>
+            <li>
+              <ul>
+                <li><a href="#">Сведения об обрзовательной организации</a></li>
+                <li><a href="#">Документы</a></li>
+                <li><a href="#">Фотогаларея</a></li>
+              </ul>
+            </li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Родителям</a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="#">Лагерь</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="marg">
+      <h1 class="admin-panel">Панель Администратора</h1>
+      <div class="filter">
+        <h2 class="filtered-list" data-page="page">Страница:</h2>
+        <ul class="filtered-items">
+          <li class="filtered-item" data-page="main_wabpage">Главная</li>
+          <li class="filtered-item" data-page="news_container">Новости</li>
+          <li class="filtered-item" data-page="price_list">Прайс</li>
+          <li class="filtered-item" data-page="raduga">О нас</li>
+        </ul>
+        <script>
+          const filteredItems = document.querySelectorAll(".filtered-item");
+          const filteredList = document.querySelector(".filtered-list");
+
+          filteredItems.forEach((item) => {
+            item.addEventListener("click", () => {
+              filteredList.setAttribute(
+                "data-page",
+                item.getAttribute("data-page")
+              );
+              filteredList.textContent = `Страница: ${item.textContent}`;
+            });
+          });
+        </script>
+
+        <h2 class="data-filter__item" data-filter="data">
+          Данные:
+          <span class="selected-data-filter"></span>
+        </h2>
+        <ul class="data-filter__list">
+          <li class="data-filter__item" data-filter="photo">Фото</li>
+          <li class="data-filter__item" data-filter="text" data-page="Текст">
+            Текст
+          </li>
+        </ul>
+        <button id="send">Отправить</button>
+
+        <script>
+          const filteredLists = document.querySelector(".filtered-list");
+          const dataFilterItems =
+            document.querySelectorAll(".data-filter__item");
+          const dataFilter = document.querySelector(
+            ".data-filter__item[data-filter='data']"
+          );
+
+          dataFilterItems.forEach((item) => {
+            item.addEventListener("click", () => {
+              if (filteredLists.getAttribute("data-page") === "page") {
+                return;
+              }
+
+              dataFilter.setAttribute(
+                "data-filter",
+                item.getAttribute("data-filter")
+              );
+
+              dataFilter.textContent = `Данные: ${item.textContent}`;
+            });
+          });
+        </script>
+      </div>
+
+      <style>
+        .filter__item[data-filter="page"] {
+          display: block;
+        }
+        .filter__item[data-filter="page"]:not(.filter__selected) {
+          display: none;
+        }
+        .filter__item[data-filter="page"]:not(.filter__selected):hover {
+          display: block;
+        }
+      </style>
+
+      <div сlass="image-container" id="content"></div>
+      <div>
+        <div>
+          <label for="image-input">Введите ссылки на изображения:</label>
+          <input type="text" id="image-input" />
+        </div>
+        <button id="update-button">Обновить</button>
+        <!-- <button id="save-button">Обновить</button> -->
+      </div>
+
+      <div class="news-create"></div>
+    </main>
+
+    <style>
+      .filtered-item,
+      .data-filter__item {
+        font-size: 16px;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+      }
+      button {
+        border-radius: 86px;
+        width: 125px;
+        height: 40px;
+        background: rgb(220, 149, 84);
+        color: rgb(255, 255, 255);
+        font-family: "Futura PT Book";
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 139.8%;
+        letter-spacing: 0%;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+      label,
+      .admin-input,
+      .admin-textarea {
+        font-family: "Futura PT Book";
+      }
+      .admin-input {
+        font-size: 16px;
+      }
+      h2 {
+        color: rgb(220, 149, 84);
+        font-family: "Futura PT Book";
+        font-size: clamp(20px, 3vw, 35px) !important;
+        font-weight: 400;
+        line-height: 130%;
+        letter-spacing: 0%;
+        text-align: left;
+      }
+      main a,
+      li {
+        color: black;
+      }
+    </style>
+  </body>
+
+  <script src="admin.js"></script>
+</html>

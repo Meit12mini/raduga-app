@@ -1,0 +1,70 @@
+{
+  "main_wabpage": [
+    {
+      "banner": [
+        {
+          "id": "1",
+          "title": "Баннер который 228",
+          "image": "",
+          "mobile": "Баннер который смог"
+        },
+        {
+          "id": "1",
+          "title": "Баннер который см22ог",
+          "image": "",
+          "mobile": "Баннер который Cмог"
+        }
+      ],
+      "banner_mobile": [
+        { "id": "1", "title": "Баннер который смог22", "image": "" },
+        { "id": "2", "title": "Баннер который Cмог", "image": "" }
+      ],
+      "raduga_info": {
+        "id": 1,
+        "title": "Радуга что это?",
+        "img": "",
+        "text": ""
+      },
+      "raduga_director": {
+        "id": 1,
+        "fhoto_director": "",
+        "fio_director": "Бугрова Елена Владимировна",
+        "additional_information": "Рыба"
+      }
+    }
+  ],
+  "news_container": [
+    {
+      "id": "1",
+      "title": "Новое значение",
+      "date": "от 25 мая 24г",
+      "text": "",
+      "img": ""
+    },
+    {
+      "id": 2,
+      "title": "Новость 12",
+      "date": "от 25 мая 24г",
+      "text": "Lorem Ipsum - это текст- который смог",
+      "img": ""
+    },
+    {
+      "id": 3,
+      "title": "Новость 3",
+      "date": "от 25 мая 26г",
+      "text": "Lorem Ipsum - это текст- который смог3",
+      "img": ""
+    },
+    {
+      "id": 4,
+      "title": "Новость 4",
+      "date": "от 25 мая 27г",
+      "text": "Lorem Ipsum - это текст- который смог4",
+      "img": ""
+    }
+  ],
+  "price_list": [{ "id": 1, "main_text": "", "table_text": "" }],
+  "raduga": [
+    { "id": 1, "main_text_raduga": "", "img": "", "conclusion_raduga": "" }
+  ]
+}
