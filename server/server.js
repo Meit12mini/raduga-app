@@ -3,6 +3,7 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 const port = 3001;
 const db = {
   read: () => JSON.parse(fs.readFileSync("db.json", "utf8")),
@@ -101,27 +102,122 @@ app.post("/update-image", (req, res) => {
 });
 app.post("/update-text", (req, res) => {
   const changes = req.body.changes;
+  const changesbes = [
+    { id: "nun-element-1-raduga_info-title", text: "Баннер который смог3" },
+  ];
   const dompage = req.body.dompage;
   const dbData = db.read();
+  // const countElements = changes[0].id.split("-").length;
+  // console.log(countElements);
+  console.log("update-text", changes);
 
   changes.forEach((change) => {
-    const [prefix, element, index, key] = change.id.split("-");
-    const text = change.text;
+    if (change.id.split("-").length > 5) {
+      const [prefix, element, ind, index, key, local] = change.id.split("-");
+      const text = change.text;
 
-    if (dbData[dompage] && dbData[dompage][0][element]) {
-      if (Array.isArray(dbData[dompage][0][element])) {
-        dbData[dompage][0][element][index][key] = text;
-      } else {
-        dbData[dompage][0][element][key] = text;
+      if (dompage === "main_wabpage") {
+        // console.log(dbData[dompage]); // Показывает все данные для main_wabpage
+        // console.log(dbData[dompage][0][key]); // Показывает данные для ключа "banner" в main_wabpage
+        // console.log(dbData[dompage][0][key][index - 1][local]);
+        dbData[dompage][0][key][index - 1][local] = text;
+        // console.log(dbData[dompage][0][key][index - 1][local]);
+        // console.log(dbData[dompage][0][key][0][local]); // Показывает значение "title" первого элемента в "banner"
+        console.log("main_wabpage");
+      }
+    } else {
+      const [prefix, element, index, key, local] = change.id.split("-");
+      const text = change.text;
+      console.log(
+        prefix,
+        ": prefix",
+        element,
+        ": element",
+        index,
+        ": index",
+        key,
+        ": key",
+        local,
+        ": local"
+      );
+      if (dompage === "main_wabpage") {
+        if (key === "raduga_info") {
+          // console.log(dbData[dompage][0][key][local]);
+          dbData[dompage][0][key][local] = text;
+          console.log("raduga_info");
+        }
+        if (key === "raduga_director") {
+          // console.log(dbData[dompage][0][key][local]);
+          dbData[dompage][0][key][local] = text;
+          // console.log("raduga_director");
+        }
+        if (key === "raduga_info") {
+          dbData[dompage][0][key][local] = text;
+          // console.log("raduga_info", dbData[dompage][0][key][local]);
+        }
+        // console.log(dbData[dompage]); // Показывает все данные для main_wabpage
+        // console.log(dbData[dompage][0][key]); // Показывает данные для ключа "banner" в main_wabpage
+        // console.log(dbData[dompage][0][key][0][local]);
+        // dbData[dompage][0][key][0][local] = text;
+        // console.log(dbData[dompage][0][key][0][local]); // Показывает значение "title" первого элемента в "banner"
+        // console.log("main_wabpage");
+
+        // if (dompage === "price_list") {
+        //   console.log("price_list");
+        // }
+        // if (dompage === "news_container") {
+        //   console.log("news_container");
+        // }
+        // if (dompage === "raduga") {
+        //   console.log("raduga");
+        // }
       }
     }
   });
-  const logToFile = (dbData) => fs.appendFileSync("output.log", `${dbData}\n`);
-  console.log = logToFile;
 
-  console.log("Сохранено в файл.");
+  //   const [prefix, element, index, key, local] = change.id.split("-");
+  //   const text = change.text;
+  //   console.log(
+  //     prefix,
+  //     ": prefix",
+  //     element,
+  //     ": element",
+  //     index,
+  //     ": index",
+  //     key,
+  //     ": key",
+  //     local,
+  //     ": local"
+  //   );
 
-  // db.write(dbData);
+  //   if (dompage === "main_wabpage") {
+  //     // console.log(dbData[dompage]); // Показывает все данные для main_wabpage
+  //     // console.log(dbData[dompage][0][key]); // Показывает данные для ключа "banner" в main_wabpage
+  //     console.log(dbData[dompage][0][key][0][local]);
+  //     dbData[dompage][0][key][0][local] = text;
+  //     console.log(dbData[dompage][0][key][0][local]); // Показывает значение "title" первого элемента в "banner"
+  //     console.log("main_wabpage");
+  //   }
+
+  //   if (dompage === "price_list") {
+  //     console.log("price_list");
+  //   }
+
+  //   if (dompage === "news_container") {
+  //     console.log("news_container");
+  //   }
+
+  //   if (dompage === "raduga") {
+  //     console.log("raduga");
+  //   }
+  // });
+
+  // const logFilePath = path.join(__dirname, "dbDataLog.json");
+  // fs.writeFileSync(logFilePath, JSON.stringify(dbData, null, 2), "utf-8");
+
+  // console.log(`Data has been logged to ${logFilePath}`);
+
+  db.write(dbData);
 
   res.send("Текст обновлен успешно!");
 });

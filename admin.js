@@ -42,7 +42,7 @@ function send__info(dompage, domdata, mainKey) {
     function processItem(item, key, parentKey = "") {
       if (Array.isArray(item)) {
         item.forEach((subItem, index) =>
-          processItem(subItem, key, `${parentKey}`)
+          processItem(subItem, key, `${parentKey}-${index + 1}`)
         );
       } else if (typeof item === "object" && item !== null) {
         for (const subKey in item) {
