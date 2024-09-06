@@ -101,7 +101,7 @@ app.post("/update-image", (req, res) => {
 });
 app.post("/update-text", (req, res) => {
   const changes = req.body.changes;
-
+  const dompage = req.body.dompage;
   const dbData = db.read();
 
   changes.forEach((change) => {
