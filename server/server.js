@@ -128,7 +128,20 @@ app.post("/update-text", (req, res) => {
   db.write(dbData);
   res.send("Текст обновлен успешно!");
 });
-
+app.post("/create-message", (req, res) => {
+  const dbData = db.read();
+  const { name, phone, email, message, checkboxes } = req.body;
+  const newMessage = {
+    id: dbData.user_massage.length + 1,
+    name,
+    phone,
+    mail: email,
+    message,
+  };
+  dbData.user_massage.push(newMessage);
+  db.write(dbData);
+  res.json({ success: true, message: "Сообщение успешно создано" });
+});
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

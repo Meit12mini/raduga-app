@@ -14,6 +14,15 @@ document
       ".contact__application__text__input"
     );
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const checkboxestext = document.querySelector(
+      ".contact__application__text__text"
+    );
+    function highlightText(textElement, color, duration) {
+      textElement.style.color = color;
+      setTimeout(() => {
+        textElement.style.color = "";
+      }, duration);
+    }
 
     function showAlert(message, inputElement) {
       const alertBox = document.createElement("div");
@@ -80,15 +89,52 @@ document
         isChecked = true;
       }
     });
-
     if (!isChecked) {
+      checkboxestext.classList.add("highlight");
+      checkboxestext.classList.add("red");
+      setTimeout(() => {
+        checkboxestext.classList.remove("red");
+      }, 2000);
       return;
     }
-
     if (messageInput.value.length <= 10) {
       showAlert("Минимум 10 символов", messageInput);
       return;
     }
 
-    console.log("Отправлено");
+    // Отправка данных на сервер
+    const messageData = {
+      name: nameInput.value,
+      phone: phoneInput.value,
+      email: emailInput.value,
+      message: messageInput.value,
+      checkboxes: Array.from(checkboxes).map((checkbox) => checkbox.checked),
+    };
+
+    fetch("http://localhost:3001/create-message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(messageData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((errorData) => {
+            throw new Error(
+              `Server error: ${response.status} ${response.statusText} - ${errorData.message}`
+            );
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!data.success) {
+          console.error("Ошибка при создании сообщения:", data.message);
+          alert("Ошибка при создании сообщения: " + data.message);
+        } else {
+          console.log("Сообщение успешно создано!");
+        }
+      })
+      .catch((error) => console.error("Ошибка:", error));
   });
