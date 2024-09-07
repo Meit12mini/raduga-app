@@ -525,8 +525,8 @@ li {
   align-items: center;
 }
 .uniqueness__img {
-  width: clamp(50px, 6vw, 100px);
-  height: clamp(70px, 6vw, 110px);
+  width: clamp(50px, 8vw, 100px);
+  height: clamp(70px, 8vw, 110px);
 }
 .uniqueness__text {
   padding: 5px 40px 5px 40px;
@@ -841,18 +841,18 @@ li {
   text-align: left;
 }
 .name {
-  width: 55px;
+  width: 55px !important;
 }
 .phone {
-  width: 105px;
+  width: 105px !important;
 }
 .mail {
-  width: 75px;
+  width: 75px !important;
 }
 .box {
 }
 .text {
-  width: 150px;
+  width: clamp(110px, 25vw, 150px) !important;
 }
 .faq__item__answer {
   overflow: hidden;
@@ -1488,7 +1488,7 @@ li {
   .contact__application__application-container__phone-container__title,
   .contact__application__application-container__mail-container__title,
   .contact__application__text__title {
-    font-size: 30px;
+    font-size: clamp(22px, 5vw, 28px) !important;
   }
 }
 
@@ -1622,6 +1622,9 @@ li {
   }
 }
 @media screen and (max-width: 766px) {
+  .news__scroll {
+    padding: 0px 25px 0px 25px;
+  }
   .teacher-info__teacher-info-content {
     width: 90vw;
   }
@@ -1838,6 +1841,12 @@ li {
 }
 
 @media screen and (max-width: 500px) {
+  .name,
+  .phone,
+  .mail,
+  .text {
+    padding-bottom: 5px;
+  }
   .contact__application__application-container__user-container__input,
   .contact__application__application-container__phone-container__input,
   .contact__application__application-container__mail-container__input,
@@ -1848,10 +1857,13 @@ li {
     width: 80% !important;
   }
   .uniqueness {
-    width: 100%;
+    width: clamp(220px, 50vw, 400px);
   }
 }
 @media screen and (max-width: 440px) {
+  .news__scroll {
+    padding: 0px 10px 0px 10px;
+  }
   .admin-img {
     width: 280px;
   }

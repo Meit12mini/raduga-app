@@ -26,7 +26,7 @@ document
       alertBox.style.backgroundColor = "red";
       alertBox.style.color = "white";
       alertBox.style.zIndex = "1000";
-      alertBox.style.fontSize = "16px";
+      alertBox.style.fontSize = "15px";
       alertBox.style.fontFamily = "Futura PT Book";
       alertBox.style.borderRadius = "5px";
 
