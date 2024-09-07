@@ -255,7 +255,7 @@
                     class="contact__application__application-container__user-container"
                   >
                     <div
-                      class="contact__application__application-container__user-container__title"
+                      class="contact__application__application-container__user-container__title name"
                     >
                       Имя
                     </div>
@@ -267,7 +267,7 @@
                     class="contact__application__application-container__phone-container"
                   >
                     <div
-                      class="contact__application__application-container__phone-container__title"
+                      class="contact__application__application-container__phone-container__title phone"
                     >
                       Телефон
                     </div>
@@ -279,7 +279,7 @@
                     class="contact__application__application-container__mail-container"
                   >
                     <div
-                      class="contact__application__application-container__mail-container__title"
+                      class="contact__application__application-container__mail-container__title mail"
                     >
                       Почта
                     </div>
@@ -290,11 +290,14 @@
                       <div
                         class="contact__application__application-container__cube"
                       >
+                        <input
+                          type="checkbox"
+                          id="agreement"
+                          class="contact__application__application-container__agreement-container__checkbox"
+                          style="width: 20px; height: 20px"
+                        />
                         <div
-                          class="contact__application__application-container__cube__img"
-                        ></div>
-                        <div
-                          class="contact__application__application-container__text"
+                          class="contact__application__application-container__text box"
                         >
                           Соглашение на обработку персональных данных
                         </div>
@@ -303,7 +306,9 @@
                   </div>
                 </div>
                 <div class="contact__application__text">
-                  <div class="contact__application__text__title">Сообщение</div>
+                  <div class="contact__application__text__title text">
+                    Сообщение
+                  </div>
                   <textarea
                     class="contact__application__text__input"
                     type="text"
@@ -314,7 +319,12 @@
                   ></textarea>
 
                   <div class="contact__application__text__cube">
-                    <div class="contact__application__text__cube__img"></div>
+                    <input
+                      type="checkbox"
+                      id="agreement"
+                      class="contact__application__application-container__agreement-container__checkbox"
+                      style="width: 20px; height: 20px"
+                    />
                     <div class="contact__application__text__text">
                       Соглашение на обработку персональных данных
                     </div>
@@ -450,6 +460,22 @@
         </div>
       </div>
     </footer>
+    <style>
+      .alert-box {
+        position: absolute;
+        padding: 10px;
+        background-color: red;
+        color: white;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .alert-box.show {
+        opacity: 1;
+      }
+    </style>
+
     <script>
       let faqOpened = true;
       if (window.innerWidth < 767) {
@@ -584,6 +610,7 @@
 
       loadSwiperBundle();
     </script>
+    <script src="./massage.js"></script>
     <script defer src="./main.js"></script>
     <script defer src="./slid.js"></script>
     <script defer src="./swiper-bundle.min.js"></script>

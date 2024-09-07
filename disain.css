@@ -840,6 +840,20 @@ li {
   letter-spacing: 0%;
   text-align: left;
 }
+.name {
+  width: 55px;
+}
+.phone {
+  width: 105px;
+}
+.mail {
+  width: 75px;
+}
+.box {
+}
+.text {
+  width: 150px;
+}
 .faq__item__answer {
   overflow: hidden;
   max-height: 0;
