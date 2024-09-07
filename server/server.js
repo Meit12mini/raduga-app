@@ -101,124 +101,31 @@ app.post("/update-image", (req, res) => {
   });
 });
 app.post("/update-text", (req, res) => {
-  const changes = req.body.changes;
-  const changesbes = [
-    { id: "nun-element-1-raduga_info-title", text: "Баннер который смог3" },
-  ];
-  const dompage = req.body.dompage;
+  const { changes, dompage } = req.body;
   const dbData = db.read();
-  // const countElements = changes[0].id.split("-").length;
-  // console.log(countElements);
-  console.log("update-text", changes);
 
   changes.forEach((change) => {
-    if (change.id.split("-").length > 5) {
-      const [prefix, element, ind, index, key, local] = change.id.split("-");
-      const text = change.text;
-
-      if (dompage === "main_wabpage") {
-        // console.log(dbData[dompage]); // Показывает все данные для main_wabpage
-        // console.log(dbData[dompage][0][key]); // Показывает данные для ключа "banner" в main_wabpage
-        // console.log(dbData[dompage][0][key][index - 1][local]);
+    const keys = change.id.split("-");
+    const text = keys.includes("id") ? parseInt(change.text) : change.text;
+    if (keys.length == 6) {
+      const [prefix, element, ind, index, key, local] = keys;
+      if (dompage == "main_wabpage" || dompage == "news_container") {
         dbData[dompage][0][key][index - 1][local] = text;
-        // console.log(dbData[dompage][0][key][index - 1][local]);
-        // console.log(dbData[dompage][0][key][0][local]); // Показывает значение "title" первого элемента в "banner"
-        console.log("main_wabpage");
       }
-    } else {
-      const [prefix, element, index, key, local] = change.id.split("-");
-      const text = change.text;
-      console.log(
-        prefix,
-        ": prefix",
-        element,
-        ": element",
-        index,
-        ": index",
-        key,
-        ": key",
-        local,
-        ": local"
-      );
-      if (dompage === "main_wabpage") {
-        if (key === "raduga_info") {
-          // console.log(dbData[dompage][0][key][local]);
-          dbData[dompage][0][key][local] = text;
-          console.log("raduga_info");
-        }
-        if (key === "raduga_director") {
-          // console.log(dbData[dompage][0][key][local]);
-          dbData[dompage][0][key][local] = text;
-          // console.log("raduga_director");
-        }
-        if (key === "raduga_info") {
-          dbData[dompage][0][key][local] = text;
-          // console.log("raduga_info", dbData[dompage][0][key][local]);
-        }
-        // console.log(dbData[dompage]); // Показывает все данные для main_wabpage
-        // console.log(dbData[dompage][0][key]); // Показывает данные для ключа "banner" в main_wabpage
-        // console.log(dbData[dompage][0][key][0][local]);
-        // dbData[dompage][0][key][0][local] = text;
-        // console.log(dbData[dompage][0][key][0][local]); // Показывает значение "title" первого элемента в "banner"
-        // console.log("main_wabpage");
-
-        // if (dompage === "price_list") {
-        //   console.log("price_list");
-        // }
-        // if (dompage === "news_container") {
-        //   console.log("news_container");
-        // }
-        // if (dompage === "raduga") {
-        //   console.log("raduga");
-        // }
+    }
+    if (keys.length == 5) {
+      const [prefix, element, index, key, local] = keys;
+      if (dompage == "main_wabpage" || dompage == "news_container") {
+        dbData[dompage][0][key][local] = text;
       }
+    }
+    if (keys.length == 4) {
+      const [prefix, element, index, local] = keys;
+      dbData[dompage][index - 1][local] = text;
     }
   });
 
-  //   const [prefix, element, index, key, local] = change.id.split("-");
-  //   const text = change.text;
-  //   console.log(
-  //     prefix,
-  //     ": prefix",
-  //     element,
-  //     ": element",
-  //     index,
-  //     ": index",
-  //     key,
-  //     ": key",
-  //     local,
-  //     ": local"
-  //   );
-
-  //   if (dompage === "main_wabpage") {
-  //     // console.log(dbData[dompage]); // Показывает все данные для main_wabpage
-  //     // console.log(dbData[dompage][0][key]); // Показывает данные для ключа "banner" в main_wabpage
-  //     console.log(dbData[dompage][0][key][0][local]);
-  //     dbData[dompage][0][key][0][local] = text;
-  //     console.log(dbData[dompage][0][key][0][local]); // Показывает значение "title" первого элемента в "banner"
-  //     console.log("main_wabpage");
-  //   }
-
-  //   if (dompage === "price_list") {
-  //     console.log("price_list");
-  //   }
-
-  //   if (dompage === "news_container") {
-  //     console.log("news_container");
-  //   }
-
-  //   if (dompage === "raduga") {
-  //     console.log("raduga");
-  //   }
-  // });
-
-  // const logFilePath = path.join(__dirname, "dbDataLog.json");
-  // fs.writeFileSync(logFilePath, JSON.stringify(dbData, null, 2), "utf-8");
-
-  // console.log(`Data has been logged to ${logFilePath}`);
-
   db.write(dbData);
-
   res.send("Текст обновлен успешно!");
 });
 
