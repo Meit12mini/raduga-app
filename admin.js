@@ -41,6 +41,8 @@ function send__info(dompage, domdata, mainKey) {
       if (dompage == "main_wabpage") {
         document.querySelector(".new-banner").style.display = "block";
         document.querySelector(".new-news-cont").style.display = "none";
+      } else {
+        document.querySelector(".new-banner").style.display = "none";
       }
       for (let i = 0; i < datatextdel.length; i++) {
         datatextdel[i].style.display = "flex";
@@ -52,6 +54,8 @@ function send__info(dompage, domdata, mainKey) {
       if (dompage == "news_container") {
         document.querySelector(".new-news-cont").style.display = "block";
         document.querySelector(".new-banner").style.display = "none";
+      } else {
+        document.querySelector(".new-news-cont").style.display = "none";
       }
     } else if (domdata === "photo") {
       document.querySelector(".new-banner").style.display = "none";
@@ -97,14 +101,36 @@ function send__info(dompage, domdata, mainKey) {
           domdata === "photo" &&
           (key === "img" || key === "image" || key === "fhoto_director")
         ) {
+          const state = {
+            currentRedactElement: null,
+            isRedactActive: 0,
+          };
+
           const imgElement = document.createElement("img");
           imgElement.src = item;
           imgElement.alt = key;
           imgElement.classList.add("admin-img");
           imgElement.setAttribute("data-id", uniqueId);
+
           imgElement.addEventListener("click", () => {
-            imgElement.classList.toggle("redact");
+            if (imgElement.classList.contains("redact")) {
+              imgElement.classList.remove("redact");
+              state.isRedactActive = 0;
+              state.currentRedactElement = null;
+            } else {
+              if (state.isRedactActive === 0) {
+                if (state.currentRedactElement) {
+                  state.currentRedactElement.classList.remove("redact");
+                }
+                imgElement.classList.add("redact");
+                state.currentRedactElement = imgElement;
+                state.isRedactActive = 1;
+              } else {
+                console.log("Another image is already in redact mode.");
+              }
+            }
           });
+
           contentElement.appendChild(imgElement);
         } else if (
           domdata === "text" &&

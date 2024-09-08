@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 app.post("/update-image", (req, res) => {
   const newImageUrl = req.body.image;
   const imageId = req.body.imageId;
+  console.log(newImageUrl, imageId);
 
   console.log(
     "Получен запрос на обновление изображения:",
