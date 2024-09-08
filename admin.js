@@ -194,6 +194,7 @@ Buttonnewbaner.addEventListener("click", () => {
       console.error("Ошибка при создании баннера:", error);
     });
 });
+
 const updateButton = document.getElementById("update-button");
 updateButton.addEventListener("click", () => {
   const newImageUrl = document.getElementById("image-input").value;
@@ -234,8 +235,10 @@ updateButton.addEventListener("click", () => {
   const selectedImage = document.querySelector("img.redact");
   const textAreas = document.querySelectorAll("textarea.admin-textarea");
   const inputFields = document.querySelectorAll("input.admin-input");
+  const dataId = selectedImage.getAttribute("data-id");
 
   if (selectedImage) {
+    
     // Обновление изображения
     const imageId = selectedImage.id;
     fetch("http://localhost:3001/update-image", {
@@ -246,6 +249,8 @@ updateButton.addEventListener("click", () => {
       body: JSON.stringify({
         image: newImageUrl,
         imageId: selectedImage.src, // Отправляйте URL-адрес изображения
+        dataId: dataId,
+        dompageimg: dompage,
       }),
     })
       .then((response) => {

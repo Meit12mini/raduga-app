@@ -29,76 +29,32 @@ app.use((req, res, next) => {
 app.post("/update-image", (req, res) => {
   const newImageUrl = req.body.image;
   const imageId = req.body.imageId;
-  console.log(newImageUrl, imageId);
-
-  console.log(
-    "Получен запрос на обновление изображения:",
-    newImageUrl,
-    imageId
-  );
-
-  fs.readFile("db.json", "utf8", (err, data) => {
-    if (err) {
-      console.error("Ошибка чтения файла:", err);
-      return res
-        .status(500)
-        .json({ success: false, message: "Ошибка сервера при чтении файла" });
+  const dataIdimg = req.body.dataId;
+  const dompagea = req.body.dompageimg;
+  const dbData = db.read();
+  console.log(newImageUrl, imageId, dataIdimg, dompagea);
+  const keys = dataIdimg.split("-");
+  console.log("Тип и id элемента:", keys);
+  if (keys.length == 6) {
+    const [prefix, element, ind, index, key, local] = keys;
+    if (dompagea == "main_wabpage" || dompagea == "news_container") {
+      console.log(dbData[dompagea][0][key][index - 1][local]);
+      dbData[dompagea][0][key][index - 1][local] = newImageUrl;
+      console.log(dbData[dompagea][0][key][index - 1][local]);
     }
-
-    let jsonData;
-    try {
-      jsonData = JSON.parse(data);
-    } catch (parseErr) {
-      console.error("Ошибка парсинга JSON:", parseErr);
-      return res
-        .status(500)
-        .json({ success: false, message: "Ошибка сервера при парсинге JSON" });
+  }
+  if (keys.length == 5) {
+    const [prefix, element, index, key, local] = keys;
+    if (dompagea == "main_wabpage" || dompagea == "news_container") {
+      dbData[dompagea][0][key][local] = newImageUrl;
     }
-
-    let updated = false;
-    jsonData.main_wabpage[0].banner.forEach((item) => {
-      if (item.image === imageId) {
-        item.image = newImageUrl;
-        updated = true;
-      }
-    });
-
-    jsonData.main_wabpage[0].banner_mobile.forEach((item) => {
-      if (item.image === imageId) {
-        item.image = newImageUrl;
-        updated = true;
-      }
-    });
-
-    if (jsonData.main_wabpage[0].raduga_info.img === imageId) {
-      jsonData.main_wabpage[0].raduga_info.img = newImageUrl;
-      updated = true;
-    }
-
-    if (jsonData.main_wabpage[0].raduga_director.fhoto_director === imageId) {
-      jsonData.main_wabpage[0].raduga_director.fhoto_director = newImageUrl;
-      updated = true;
-    }
-
-    if (updated) {
-      fs.writeFile("db.json", JSON.stringify(jsonData, null, 2), (err) => {
-        if (err) {
-          console.error("Ошибка записи файла:", err);
-          return res.status(500).json({
-            success: false,
-            message: "Ошибка сервера при записи файла",
-          });
-        }
-        console.log("Изображение успешно обновлено");
-        res.json({ success: true, message: "Изображение обновлено" });
-      });
-    } else {
-      console.error("Изображение не найдено для обновления");
-      res
-        .status(400)
-        .json({ success: false, message: "Изображение не найдено" });
-    }
-  });
+  }
+  if (keys.length == 4) {
+    const [prefix, element, index, local] = keys;
+    dbData[dompagea][index - 1][local] = newImageUrl;
+  }
+  db.write(dbData);
+  res.json({ success: true, message: "Изображение успешно обновлено" });
 });
 app.post("/update-text", (req, res) => {
   const { changes, dompage } = req.body;
