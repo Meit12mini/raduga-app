@@ -38,6 +38,10 @@ function send__info(dompage, domdata, mainKey) {
     if (domdata === "text") {
       label.style.display = "none";
       imginput.style.display = "none";
+      if (dompage == "main_wabpage") {
+        document.querySelector(".new-banner").style.display = "block";
+        document.querySelector(".new-news-cont").style.display = "none";
+      }
       for (let i = 0; i < datatextdel.length; i++) {
         datatextdel[i].style.display = "flex";
       }
@@ -45,7 +49,13 @@ function send__info(dompage, domdata, mainKey) {
       for (let i = 0; i < dataimg.length; i++) {
         dataimg[i].style.display = "none";
       }
+      if (dompage == "news_container") {
+        document.querySelector(".new-news-cont").style.display = "block";
+        document.querySelector(".new-banner").style.display = "none";
+      }
     } else if (domdata === "photo") {
+      document.querySelector(".new-banner").style.display = "none";
+      document.querySelector(".new-news-cont").style.display = "none";
       label.style.display = "block";
       imginput.style.display = "block";
       for (let i = 0; i < datatextdel.length; i++) {
@@ -137,7 +147,27 @@ function send__info(dompage, domdata, mainKey) {
     console.log("No data found for dompage:", dompage);
   }
 }
-
+const Buttonnewbaner = document.getElementById("new-banner-create");
+Buttonnewbaner.addEventListener("click", () => {
+  fetch("http://localhost:3001/create-banner", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: 1,
+      title: "Новый баннер",
+      image: "new.png",
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Баннер успешно создан:", data);
+    })
+    .catch((error) => {
+      console.error("Ошибка при создании баннера:", error);
+    });
+});
 const updateButton = document.getElementById("update-button");
 updateButton.addEventListener("click", () => {
   const newImageUrl = document.getElementById("image-input").value;
@@ -145,11 +175,12 @@ updateButton.addEventListener("click", () => {
   if (DeltextID) {
     console.log("DeltextID: " + DeltextID);
 
-    fetch(`http://localhost:3001/delete-text/${DeltextID}`, {
+    fetch("http://localhost:3001/delete-text", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ id: DeltextID }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -229,7 +260,7 @@ updateButton.addEventListener("click", () => {
       changes.push({ id, text: newText });
     });
 
-    if (changes.length > 0) {
+    if (changes.length > 0 && !DeltextID) {
       fetch("http://localhost:3001/update-text", {
         method: "POST",
         headers: {

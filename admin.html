@@ -157,13 +157,29 @@
         </div>
         <div class="datatextdel" style="display: none; margin-top: 10px">
           <label for="del-elem-input"
-            >Введите индитификатор для удаления:
+            >Введите индитификатор для удаления новости или слайда:
           </label>
           <input
             type="text"
             id="del-elem-input"
             placeholder="Введите индитификатор"
           />
+        </div>
+        <div class="new-banner">
+          <button
+            id="new-banner-create"
+            style="width: auto; padding: 0px 10px 0px 10px"
+          >
+            Создать новый баннер
+          </button>
+        </div>
+        <div class="new-news-cont">
+          <button
+            id="new-news-create"
+            style="width: auto; padding: 0px 10px 0px 10px"
+          >
+            Создать новую новость
+          </button>
         </div>
         <button id="update-button">Обновить</button>
         <!-- <button id="save-button">Обновить</button> -->
@@ -173,6 +189,10 @@
     </main>
 
     <style>
+      .new-banner,
+      .new-news-cont {
+        display: none;
+      }
       .filtered-item,
       .data-filter__item {
         font-size: 16px;
