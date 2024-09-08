@@ -17,6 +17,10 @@ document
     const checkboxestext = document.querySelector(
       ".contact__application__text__text"
     );
+    const checkboxestextps = document.querySelector(
+      ".contact__application__application-container__text"
+    );
+
     function highlightText(textElement, color, duration) {
       textElement.style.color = color;
       setTimeout(() => {
@@ -90,10 +94,13 @@ document
       }
     });
     if (!isChecked) {
+      checkboxestextps.classList.add("highlight");
+      checkboxestextps.classList.add("red");
       checkboxestext.classList.add("highlight");
       checkboxestext.classList.add("red");
       setTimeout(() => {
         checkboxestext.classList.remove("red");
+        checkboxestextps.classList.remove("red");
       }, 2000);
       return;
     }

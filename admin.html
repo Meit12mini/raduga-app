@@ -110,7 +110,7 @@
             Текст
           </li>
         </ul>
-        <button id="send">Отправить</button>
+        <button id="send">Показать</button>
 
         <script>
           const filteredLists = document.querySelector(".filtered-list");
@@ -151,9 +151,19 @@
 
       <div сlass="image-container" id="content"></div>
       <div>
-        <div>
-          <label for="image-input">Введите ссылки на изображения:</label>
-          <input type="text" id="image-input" />
+        <div class="dataimg" style="display: none">
+          <label for="image-input">Обновление изображения: </label>
+          <input type="text" id="image-input" placeholder="Введите ссылку" />
+        </div>
+        <div class="datatextdel" style="display: none; margin-top: 10px">
+          <label for="del-elem-input"
+            >Введите индитификатор для удаления:
+          </label>
+          <input
+            type="text"
+            id="del-elem-input"
+            placeholder="Введите индитификатор"
+          />
         </div>
         <button id="update-button">Обновить</button>
         <!-- <button id="save-button">Обновить</button> -->

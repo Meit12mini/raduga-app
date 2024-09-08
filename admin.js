@@ -29,6 +29,35 @@ document.getElementById("send").addEventListener("click", () => {
   }
 });
 function send__info(dompage, domdata, mainKey) {
+  const labels = document.querySelectorAll('label[for="image-input"]');
+  const datatextdel = document.getElementsByClassName("datatextdel");
+  const dataimg = document.getElementsByClassName("dataimg");
+  const imginput = document.getElementById("image-input");
+
+  labels.forEach((label) => {
+    if (domdata === "text") {
+      label.style.display = "none";
+      imginput.style.display = "none";
+      for (let i = 0; i < datatextdel.length; i++) {
+        datatextdel[i].style.display = "flex";
+      }
+
+      for (let i = 0; i < dataimg.length; i++) {
+        dataimg[i].style.display = "none";
+      }
+    } else if (domdata === "photo") {
+      label.style.display = "block";
+      imginput.style.display = "block";
+      for (let i = 0; i < datatextdel.length; i++) {
+        datatextdel[i].style.display = "none";
+      }
+
+      for (let i = 0; i < dataimg.length; i++) {
+        dataimg[i].style.display = "flex";
+      }
+    }
+  });
+
   const contentElement = document.getElementById("content");
   contentElement.innerHTML = ""; // Очистка содержимого
 
@@ -112,6 +141,39 @@ function send__info(dompage, domdata, mainKey) {
 const updateButton = document.getElementById("update-button");
 updateButton.addEventListener("click", () => {
   const newImageUrl = document.getElementById("image-input").value;
+  const DeltextID = document.getElementById("del-elem-input").value;
+  if (DeltextID) {
+    console.log("DeltextID: " + DeltextID);
+
+    fetch(`http://localhost:3001/delete-text/${DeltextID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((errorData) => {
+            throw new Error(
+              `Server error: ${response.status} ${response.statusText} - ${errorData.message}`
+            );
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!data.success) {
+          console.error("Ошибка при удалении текста:", data.message);
+          alert("Ошибка при удалении текста: " + data.message);
+        } else {
+          console.log("Текст успешно удален!");
+        }
+      })
+      .catch((error) => console.error("Ошибка:", error));
+  } else {
+    console.log("Нет элемента для удаления.");
+  }
+
   const selectedImage = document.querySelector("img.redact");
   const textAreas = document.querySelectorAll("textarea.admin-textarea");
   const inputFields = document.querySelectorAll("input.admin-input");
