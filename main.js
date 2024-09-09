@@ -22,6 +22,7 @@ async function getResponseAndPopulate() {
     soyoo: await fetchData("http://localhost:3000/soyoo"),
     guidance: await fetchData("http://localhost:3000/guidance"),
     document: await fetchData("http://localhost:3000/document"),
+    photo_gallery: await fetchData("http://localhost:3000/photo_gallery"),
   };
 
   const sections = {
@@ -322,10 +323,19 @@ async function getResponseAndPopulate() {
     "document-conteiner__main": {
       syntax: (item) =>
         `<div class="document-conteiner__main__document">
-      <img class="document-conteiner__main__document__img" src="${item.img}" data-id="${item.id}"/></div>
+      <img style="width: clamp(280px, 30vw, 350px); padding: clamp(5px, 1vw, 20px)" class="document-conteiner__main__document__img" src="${item.img}" data-id="${item.id}"/></div>
       `,
 
       data: sectionsData.document.map((item) => ({
+        img: item.img,
+        id: item.id,
+      })),
+    },
+    "photo-conteiner__main": {
+      syntax: (item) =>
+        `<div class="photo-conteiner__main__photo-list">
+      <img style="width: clamp(280px, 30vw, 350px); padding: clamp(5px, 1vw, 20px)" class="photo-conteiner__main__photo-list__img" src="${item.img}" data-id="${item.id}"/></div>`,
+      data: sectionsData.photo_gallery.map((item) => ({
         img: item.img,
         id: item.id,
       })),
