@@ -1017,6 +1017,12 @@ li {
   text-align: left;
   margin-bottom: 0px;
 }
+.footer__content__links__company__list a,
+.footer__content__links__connection__address__list a,
+.footer__content__links__connection__reach__list a {
+  padding: 2px 0px 2px 0px;
+}
+
 .news__content {
   display: flex;
   flex-wrap: wrap;

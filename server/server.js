@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { time } = require("console");
 const app = express();
 const port = 3001;
 
@@ -141,7 +142,8 @@ app.delete("/delete-text", (req, res) => {
 });
 
 app.post("/create-banner", (req, res) => {
-  const { id, title, image } = req.body;
+  const { id, title } = req.body;
+  const images = req.body.imagess;
 
   // Чтение данных из db.json
   const dbData = db.read();
@@ -149,22 +151,44 @@ app.post("/create-banner", (req, res) => {
   // Увеличение id всех существующих баннеров на 1
   dbData.main_wabpage[0].banner.forEach((banner) => (banner.id += 1));
   dbData.main_wabpage[0].banner_mobile.forEach((banner) => (banner.id += 1));
-
+  let times = 0;
   // Добавление нового баннера в начало списков
-  dbData.main_wabpage[0].banner.unshift({ id, title, image });
-  dbData.main_wabpage[0].banner_mobile.unshift({ id, title, image });
+  images.forEach((image) => {
+    if (times == 0) {
+      dbData.main_wabpage[0].banner.unshift({ id, title, image });
+    
+    }
+    if (times == 1) {
+      dbData.main_wabpage[0].banner_mobile.unshift({ id, title, image });
+      
+    }
+    times += 1;
+  });
 
   // Запись обновленных данных обратно в db.json
   db.write(dbData);
   // Вывод данных в консоль
-  console.log("Новый баннер добавлен:");
-  console.log("ID:", id);
-  console.log("Title:", title);
-  console.log("Image:", image);
 
-  res.json({ message: "Баннер успешно создан", id, title, image });
+  res.json({ message: "Баннер успешно создан", id, title });
 });
 
+app.post("/create-new", (req, res) => {
+  const { id, title, date, text, img } = req.body;
+
+  // Чтение данных из db.json
+  const dbData = db.read();
+
+  // Увеличение id всех существующих баннеров на 1
+  dbData.news_container.forEach((newone) => (newone.id += 1));
+
+  // Добавление нового баннера в начало списков
+  dbData.news_container.unshift({ id, title, date, text, img });
+
+  // Запись обновленных данных обратно в db.json
+  db.write(dbData);
+
+  res.json({ message: "Новость успешно создана", id, title, img });
+});
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

@@ -39,13 +39,13 @@ document
             "footer__content__links__connection__reach__title"
           )
         ) {
-          listElement.style.height = "50px";
+          listElement.style.height = "60px";
         } else if (
           element.classList.contains(
             "footer__content__links__connection__address__title"
           )
         ) {
-          listElement.style.height = "80px";
+          listElement.style.height = "90px";
         } else {
           listElement.style.height = "125px";
         }
