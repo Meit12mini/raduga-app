@@ -84,27 +84,27 @@
           <li class="filtered-item" data-page="news_container">Новости</li>
           <li class="filtered-item" data-page="price_list">Прайс</li>
           <li class="filtered-item" data-page="raduga">О нас</li>
-          <li class="filtered-item" data-page="sved">
+          <li
+            class="filtered-item"
+            data-page="svedeniya_obrazovatel_uchrezhdenii"
+          >
             Сведения об обрзовательной организации
           </li>
           <li class="filtered-item" data-page="obrazovanie">Образование</li>
           <li class="filtered-item" data-page="obrazovat_standart">
             Образовательные стандарты
           </li>
-          <li class="filtered-item" data-page="teaching_staff">
+          <li class="filtered-item" data-page="teachers_list">
             Педагогический (научно-педагогический состав) и руководство
           </li>
-          <li
-            class="filtered-item"
-            data-page="matarial_texnih_obespeshenie_ocnahcinoct_obraz_prosec"
-          >
+          <li class="filtered-item" data-page="mtooop">
             Материально-техническое обеспечение и оснащенность образовательного
             процесса
           </li>
-          <li class="filtered-item" data-page="dostyp-sreda">
+          <li class="filtered-item" data-page="dostyp_sreda">
             Доступная среда
           </li>
-          <li class="filtered-item" data-page="fin_hoz_deatelnost">
+          <li class="filtered-item" data-page="fin_hoz">
             Финансово-хозяйственная деятельность
           </li>
           <li class="filtered-item" data-page="vocantnie_mesta">
@@ -218,6 +218,28 @@
     </main>
 
     <style>
+      .filtered-item,
+      .data-filter__item {
+        padding: 5px;
+        position: relative;
+      }
+
+      .filtered-item::after,
+      .data-filter__item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #dc9554;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+      }
+      .filtered-item:hover::after,
+      li.data-filter__item:hover::after {
+        transform: scaleX(1);
+      }
       .new-banner,
       .new-news-cont {
         display: none;
@@ -252,6 +274,13 @@
       .admin-input,
       .admin-textarea {
         font-family: "Futura PT Book";
+      }
+      .admin-input {
+        width: 32%;
+      }
+      .admin-textarea {
+        height: 60vw;
+        width: 100%;
       }
       .admin-input {
         font-size: 16px;

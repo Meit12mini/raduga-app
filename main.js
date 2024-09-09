@@ -21,6 +21,7 @@ async function getResponseAndPopulate() {
     obrazovanie: await fetchData("http://localhost:3000/obrazovanie"),
     soyoo: await fetchData("http://localhost:3000/soyoo"),
     guidance: await fetchData("http://localhost:3000/guidance"),
+    document: await fetchData("http://localhost:3000/document"),
   };
 
   const sections = {
@@ -316,6 +317,17 @@ async function getResponseAndPopulate() {
         guidance_name: item.guidance_name,
         guidance_job: item.guidance_job,
         guidance_phone: item.guidance_phone,
+      })),
+    },
+    "document-conteiner__main": {
+      syntax: (item) =>
+        `<div class="document-conteiner__main__document">
+      <img class="document-conteiner__main__document__img" src="${item.img}" data-id="${item.id}"/></div>
+      `,
+
+      data: sectionsData.document.map((item) => ({
+        img: item.img,
+        id: item.id,
       })),
     },
   };

@@ -6,6 +6,7 @@ async function fetchData(url) {
 let data = {};
 let sectionsData = {};
 let dompage = "";
+let domdata = "";
 
 getResponseAndPopulate().then((sectionsData) => {
   data = sectionsData;
@@ -16,13 +17,13 @@ document.getElementById("send").addEventListener("click", () => {
     "price_list",
     "news_container",
     "raduga",
-    "sved",
+    "svedeniya_obrazovatel_uchrezhdenii",
     "obrazovanie",
     "obrazovat_standart",
-    "teaching_staff",
-    "matarial_texnih_obespeshenie_ocnahcinoct_obraz_prosec",
-    "dostyp-sreda",
-    "fin_hoz_deatelnost",
+    "teachers_list",
+    "mtooop",
+    "dostyp_sreda",
+    "fin_hoz",
     "vocantnie_mesta",
     "meshnarod",
   ];
@@ -48,6 +49,13 @@ function send__info(dompage, domdata, mainKey) {
   const dataimg = document.getElementsByClassName("dataimg");
   const imginput = document.getElementById("image-input");
 
+  // textinputs.forEach((textinput) => {
+  //   if (domdata === "text") {
+  //     if (dompage == "main_wabpage") {
+  //       textinput.style.width = "32%";
+  //     }
+  //   }
+  // });
   labels.forEach((label) => {
     if (domdata === "text") {
       label.style.display = "none";
@@ -275,7 +283,14 @@ updateButton.addEventListener("click", () => {
   const selectedImage = document.querySelector("img.redact");
   const textAreas = document.querySelectorAll("textarea.admin-textarea");
   const inputFields = document.querySelectorAll("input.admin-input");
-  const dataId = selectedImage.getAttribute("data-id");
+  let dataId;
+  if (domdata == "photo") {
+    dataId = selectedImage.getAttribute("data-id");
+  }
+
+  // if (selectedImage !== null) {
+  //   dataId = selectedImage.getAttribute("data-id");
+  // }
 
   if (selectedImage) {
     // Обновление изображения
@@ -314,7 +329,8 @@ updateButton.addEventListener("click", () => {
         }
       })
       .catch((error) => console.error("Ошибка:", error));
-  } else if (textAreas.length > 0 || inputFields.length > 0) {
+  }
+  if (textAreas.length > 0 || inputFields.length > 0) {
     const changes = [];
 
     textAreas.forEach((textarea) => {
@@ -355,8 +371,7 @@ updateButton.addEventListener("click", () => {
           } else {
             console.log("Текст успешно обновлен!");
           }
-        })
-        .catch((error) => console.error("Ошибка:", error));
+        });
     } else {
       console.log("Нет изменений для сохранения.");
     }
@@ -368,8 +383,25 @@ async function getResponseAndPopulate() {
   sectionsData = {
     main_wabpage: await fetchData("http://localhost:3000/main_wabpage"),
     news_container: await fetchData("http://localhost:3000/news_container"),
-    raduga: await fetchData("http://localhost:3000/raduga"),
     price_list: await fetchData("http://localhost:3000/price_list"),
+    raduga: await fetchData("http://localhost:3000/raduga"),
+    svedeniya_obrazovatel_uchrezhdenii: await fetchData(
+      "http://localhost:3000/svedeniya_obrazovatel_uchrezhdenii"
+    ),
+    teachers_list: await fetchData("http://localhost:3000/teachers_list"),
+    obrazovat_standart: await fetchData(
+      "http://localhost:3000/obrazovat_standart"
+    ),
+    mtooop: await fetchData("http://localhost:3000/mtooop"),
+    fin_hoz: await fetchData("http://localhost:3000/fin_hoz"),
+    dostyp_sreda: await fetchData("http://localhost:3000/dostyp_sreda"),
+    vocantnie_mesta: await fetchData("http://localhost:3000/vocantnie_mesta"),
+    mesh_narod_sotryd: await fetchData(
+      "http://localhost:3000/mesh_narod_sotryd"
+    ),
+    obrazovanie: await fetchData("http://localhost:3000/obrazovanie"),
+    soyoo: await fetchData("http://localhost:3000/soyoo"),
+    guidance: await fetchData("http://localhost:3000/guidance"),
   };
   return sectionsData;
 }

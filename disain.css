@@ -878,7 +878,30 @@ button:hover {
   opacity: 0.5;
   background-color: rgba(220, 149, 84, 0.8);
 }
-
+.document-container__main__document__img {
+  width: 300px;
+  transition: transform 0.2s;
+}
+.zoomed {
+  transform: scale(2);
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
 .faq__item.closed .faq__item__answer {
   max-height: 0;
   opacity: 0.5;
